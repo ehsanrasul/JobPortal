@@ -32,15 +32,15 @@
     </header>
     
 <body> 
-  <h1 class="text-center display-1">Job Listings</h1>
+  <h2 class="text-center"><mark><i>Search for a Job</i></mark></h2>
   
   <div class="input-group text-center" style="margin: auto;">
     <div class="form-outline">
-      <input type="search" id="form1" class="form-control" />
-      <label class="form-label" for="form1">Search</label>
+      <input type="search" id="searchItem" class="form-control" />
     </div>
-    <button type="button" class="btn btn-primary">
-      <i class="fas fa-search"></i>
+    <br><br>
+    <button class="btn btn-primary" id="searchButton">
+      Search
     </button>
   </div>
 
@@ -59,7 +59,7 @@
             <th></th>
           </tr>
         </thead>
-        <tbody>
+        <tbody id="tableBody">
           
         </tbody>
       </table>
