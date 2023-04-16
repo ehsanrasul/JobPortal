@@ -1,7 +1,6 @@
 
-
-
 $(document).ready(function() {
+
     $('#applicationForm').submit(function(event) {
       event.preventDefault(); 
       const jobId = $('#jobId').val();

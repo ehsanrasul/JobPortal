@@ -18,7 +18,7 @@ $(document).ready(function () {
                     '<td>' + item.location + '</td>',
                     '<td>',
                     '<div style="display:inline; align-items:left">',
-                    '<button  id="edit" class="btn btn-danger btn-sm-8" style="margin-right: 5px;">Apply</button>',
+                    '<button  id="apply" class="btn btn-danger btn-sm-8" style="margin-right: 5px;">Apply</button>',
                     '</div>',
                     '</td>',
                     '</tr>'
@@ -48,7 +48,7 @@ $(document).ready(function () {
                         '<td>' + item.location + '</td>',
                         '<td>',
                         '<div style="display:inline; align-items:left">',
-                        '<button  id="edit" class="btn btn-danger btn-sm-8" style="margin-right: 5px;">Apply</button>',
+                        '<button  id="apply" class="btn btn-danger btn-sm-8" style="margin-right: 5px;">Apply</button>',
                         '</div>',
                         '</td>',
                         '</tr>'
@@ -68,5 +68,16 @@ $(document).ready(function () {
             } 
         })
 
+
+
+
+        $('#Records').on('click', '#apply', function () {
+
+            window.location.replace("http://127.0.0.1:5500/View/Application.html");
+
+        });
+
     })
+
+
 
