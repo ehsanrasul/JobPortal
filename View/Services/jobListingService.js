@@ -30,8 +30,6 @@ $(document).ready(function () {
         })
 
 
-
-
         $('#searchButton').click((e) => {
             e.preventDefault()
 

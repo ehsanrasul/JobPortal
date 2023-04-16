@@ -5,10 +5,13 @@ require('dotenv').config()
 const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
 const jwt = require('jsonwebtoken')
+const multer = require("multer");
+const upload = multer({ dest: "uploads/" });
 
 const userRouter = require('./Routes/userRoutes')
 const jobRouter = require('./Routes/jobRoutes')
 const loginRouter = require('./Routes/LoginRoutes')
+const applicationRouter = require('./Routes/applicationRoutes')
 
 
 app.use(express.json())
@@ -29,6 +32,7 @@ mongoose.connect(process.env.MONGO_URI,
 app.use("/api/user", userRouter)
 app.use("/api/job", jobRouter)
 app.use("/api/login", loginRouter)
+app.use("/api/application", applicationRouter)
 
 app.listen(3000, () => console.log("Server Listening at Port : "+process.env.PORT))
 
