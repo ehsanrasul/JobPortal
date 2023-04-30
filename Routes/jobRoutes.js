@@ -1,6 +1,9 @@
 const express = require('express')
 const app = express()
 require('dotenv').config()
+const jwt = require('jsonwebtoken')
+const LocalStorage = require('node-localstorage').LocalStorage;
+const localStorage = new LocalStorage('./scratch')
 const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
 const Job = require('../Model/jobModel')
@@ -10,9 +13,34 @@ app.use(bodyParser.urlencoded({extended: false}))
 app.use(express.json())
 
 
-//Creating a New User to the Database
-app.get('/' , async (req , res)=>{
 
+const verifyToken = (req, res, next) => {
+
+  const token  = localStorage.getItem('token');
+  if(!token) {
+    res.status(200).json({
+        success: false,
+        message: "Error Token was not Provieded"
+    })
+  }
+
+  try{
+      const decodedToken = jwt.verify(token, process.env.SECRET);
+      req.token = decodedToken;
+      next();
+  }catch(err){
+    res.status(401).json({
+      success: false,
+      message: err.message
+    })
+  }
+}
+
+
+
+//Fetching all Jobs
+app.get('/'  ,async (req , res)=>{
+    var decodedToken = req.token
     try {
     const jobs = await Job.find()
     res.json(jobs)
@@ -38,7 +66,7 @@ app.post('/addJobs', (req, res) => {
   });
   
   
-
+module.exports = verifyToken;
 module.exports = app;
 
 

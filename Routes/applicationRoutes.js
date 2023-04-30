@@ -5,8 +5,8 @@ const jwt = require('jsonwebtoken')
 const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
 const Application = require('../Model/applicationModel')
+const verifyToken = require('./jobRoutes.js')
 const multer = require("multer");
-// const upload = multer({ dest: "uploads/" });
 
 app.use(bodyParser.urlencoded({extended: false}))
 app.use(express.json())
@@ -47,6 +47,22 @@ upload(req, res, (err) =>  {
         }
     })
 })
+
+
+app.get('/:id', (req, res) => {
+    const userId = req.params.id;
+    
+    Application.find({ userId: userId })
+    .then((applications) => {
+      res.json(applications)
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+
+
+  });
+  
 
 
 module.exports = app;

@@ -1,4 +1,3 @@
-
 const jobs = [];
 
 var url = "http://localhost:3000/api/job/";
@@ -30,13 +29,29 @@ $(document).ready(function () {
         })
 
 
+        //Getting the Jobs for which User Has Applied
+        //const sessionId = localStorage.getItem("sessionId")
+        axios.get("http://localhost:3000/api/application/"+"ali519")
+        .then((response) => {
+                 response.data.forEach((item) => {  
+                    console.log(item.jobId)
+
+            })
+        })
+        .catch((error) => {
+            console.log("D");
+        })
+        
+
+
+        //Searching
         $('#searchButton').click((e) => {
             e.preventDefault()
 
             var searchItem = $("#searchItem").val();
 
             $('#tableBody').empty()
-            flag = false;
+            var flag = false;
             jobs.forEach(item => {
                 if(item.jobTitle.toLowerCase().startsWith(searchItem.toLowerCase())){
                     $('#Records').find('tbody').append([
